@@ -8,6 +8,7 @@ use League\Route\Http\Exception\{MethodNotAllowedException, NotFoundException};
 use League\Route\Route;
 use League\Route\Strategy\AbstractStrategy;
 use League\Route\{ContainerAwareInterface, ContainerAwareTrait};
+use Middlewares\Whoops;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\{MiddlewareInterface, RequestHandlerInterface};
 use Throwable;
@@ -93,20 +94,6 @@ class FancyStrategy extends AbstractStrategy implements ContainerAwareInterface
      */
     public function getThrowableHandler(): MiddlewareInterface
     {
-        return new class implements MiddlewareInterface
-        {
-            /**
-             * {@inheritdoc}
-             *
-             * @throws Throwable
-             */
-            public function process(ServerRequestInterface $request, RequestHandlerInterface $requestHandler) : ResponseInterface {
-                try {
-                    return $requestHandler->handle($request);
-                } catch (Throwable $e) {
-                    throw $e;
-                }
-            }
-        }; 
+        return new Whoops;
     }
 }
