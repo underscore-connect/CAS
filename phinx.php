@@ -21,7 +21,7 @@ return [
             'name' => $container->get('database.dbname'),
             'user' => $container->get('database.username'),
             'pass' => $container->get('database.password'),
-            'port' => 1486,
+            'port' => $container->get('database.port'),
             'charset' => 'utf8'
         ]
     ],

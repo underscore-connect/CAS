@@ -5,5 +5,6 @@ return [
     'database.dbname'   => '',
     'database.username' => '',
     'database.password' => '',
+    'database.port'     => 5432
 
 ];
